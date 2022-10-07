@@ -7,7 +7,7 @@ const AUTHORIZE = "http://accounts.spotify.com/authorize";
 const TOKEN = "http://accounts.spotify.com/api/token";
 
 
-function onPageLoading() {
+export default function OnPageLoading() {
      localStorage.getItem("client_id");
      localStorage.getItem("client_secret");
 
