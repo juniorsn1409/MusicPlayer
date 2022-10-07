@@ -6,8 +6,7 @@ var client_secret = "32b4d000bf5a4380be04c1ad3238872e";
 const AUTHORIZE = "http://accounts.spotify.com/authorize";
 const TOKEN = "http://accounts.spotify.com/api/token";
 
-
-export default function OnPageLoading() {
+function OnPageLoading() {
      localStorage.getItem("client_id");
      localStorage.getItem("client_secret");
 
@@ -15,6 +14,7 @@ export default function OnPageLoading() {
           handlerRedirect();
      }
 }
+
 function handlerRedirect() {
      let code = getCode();
      fetchAccessToken(code);
