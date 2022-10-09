@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'Carmina Music Player',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blueGrey,
       ),
       home: const MyHomePage(title: 'Carmina Music Player'),
     );
