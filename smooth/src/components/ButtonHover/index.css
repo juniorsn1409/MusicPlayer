@@ -12,7 +12,7 @@ button {
   font-family: inherit;
 }
 button.learn-more {
-  width: 15rem;
+  width: 17rem;
   height: auto;
 }
 button.learn-more .circle {
