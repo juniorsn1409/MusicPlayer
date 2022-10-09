@@ -4,7 +4,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'; // npm install re
 
 // spotify dependencies
 
-import spotify from'./../_spotify/server';
+import spotify from'./../_spotify/spotify';
 
 //components
 

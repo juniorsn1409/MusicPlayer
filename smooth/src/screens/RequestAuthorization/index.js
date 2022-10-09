@@ -2,7 +2,7 @@ import React from "react"
 
 // _spotify api
 
-import spotify from'./../../_spotify/server';
+import spotify from'./../../_spotify/spotify';
 
 //components
 
@@ -11,8 +11,8 @@ import spotify from'./../../_spotify/server';
 
 export default function RequestAuthorization() { 
      return (
-          <div>
-               {spotify.RequestAuthorization() }
+          <div>     
+               {spotify.RequestAuthorization()}
           </div>
      )
 }

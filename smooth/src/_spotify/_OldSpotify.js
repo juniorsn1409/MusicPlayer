@@ -1,5 +1,8 @@
-// Important information below, which should not be shared
+// https://developer.spotify.com/
+// https://developer.spotify.com/documentation/general/guides/authorization/scopes/
 
+
+// Important information below, which should not be shared
 var client_id = "1b8ac1436a65485da7a98c2175bc9860";
 var client_secret = "32b4d000bf5a4380be04c1ad3238872e";
 var redirect_uri = "http://localhost:3000/home";
@@ -88,12 +91,7 @@ function callAuthorizationApi(body) {
      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
      xhr.setRequestHeader('Authorization', 'Basic' + btoa(client_id + ':' + client_secret));
 
-     // cors permission checks
-     xhr.withCredentials("")
-     xhr.setRequestHeader("Access-Control-Allow-Origin", "*")
-     xhr.setRequestHeader("Access-Control-Allow-Credentials", "true");
-     xhr.setRequestHeader("Access-Control-Max-Age", "1800");
-     xhr.setRequestHeader("Access-Control-Allow-Headers", "content-type");
+
 
      xhr.send(body);
      xhr.onload = handlerAuthorizationResponse;
