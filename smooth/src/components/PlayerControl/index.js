@@ -1,6 +1,6 @@
 // react dependencies
 
-import React from 'react';
+import React, { useEffect } from "react";
 
 // spotify dependencies
 
@@ -16,71 +16,41 @@ import "./index.css";
 
 export default function PlayerControl({ spotify }) {
 
+  console.log(spotify)
+
   const [{ token, item, playing }, dispatch] = useStateValue();
 
   useEffect(() => {
-    spotify.getMyCurrentPlaybackState().then((r) => {
-      console.log(r);
+    spotify.getMyCurrentPlaybackState().then((response) => {
+      console.log(response);
 
       dispatch({
         type: "SET_PLAYING",
-        playing: r.is_playing,
+        playing: response.is_playing,
       });
 
       dispatch({
         type: "SET_ITEM",
-        item: r.item,
+        item: response.item,
       });
+
+      console.log(token)
+      console.log(item)
+      console.log(playing)
     });
   }, [spotify]);
 
-  const handlePlayPause = () => {
-    if (playing) {
-      spotify.pause();
-      dispatch({
-        type: "SET_PLAYING",
-        playing: false,
-      });
-    } else {
-      spotify.play();
-      dispatch({
-        type: "SET_PLAYING",
-        playing: true,
-      });
-    }
-  };
+  spotify.getTrack().then((response) => {
+    dispatch({
+      type: "",
+      track: response.track,
+    })
+  })
 
-  const skipNext = () => {
-    spotify.skipToNext();
-    spotify.getMyCurrentPlayingTrack().then((r) => {
-      dispatch({
-        type: "SET_ITEM",
-        item: r.item,
-      });
-      dispatch({
-        type: "SET_PLAYING",
-        playing: true,
-      });
-    });
-  };
-
-  const skipPrevious = () => {
-    spotify.skipToPrevious();
-    spotify.getMyCurrentPlayingTrack().then((r) => {
-      dispatch({
-        type: "SET_ITEM",
-        item: r.item,
-      });
-      dispatch({
-        type: "SET_PLAYING",
-        playing: true,
-      });
-    });
-  };
 
   return (
     <div>
-
+      player control
     </div>
   );
 }

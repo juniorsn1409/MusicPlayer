@@ -79,7 +79,7 @@ export default function RouterApp() {
                {spotify.OnPageLoading()}
                <Routes>
                     <Route path="/" element={<RequestAuthorization />} />
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/home" element={<Home spotify={spotifyWeb} />} />
                     <Route path="*" element={<Error404 />} />
                </Routes>
           </BrowserRouter>

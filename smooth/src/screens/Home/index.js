@@ -13,8 +13,8 @@ import "./index.css";
 //components dependencies
 import PlayerControl from './../../components/PlayerControl';
 
-export default function Home() {
+export default function Home({ spotify }) {
   return (
-    <PlayerControl />
+    <PlayerControl spotify={{ spotify }} />
   );
 }
