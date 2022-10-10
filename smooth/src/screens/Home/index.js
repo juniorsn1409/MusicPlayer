@@ -1,6 +1,6 @@
 // react dependencies
 
-import React from 'react';
+import React from "react";
 
 // css dependencies
 
@@ -8,13 +8,16 @@ import "./index.css";
 
 // spotify dependencies
 
-
+import spotify from "./../../_spotify/spotify";
 
 //components dependencies
-import PlayerControl from './../../components/PlayerControl';
 
-export default function Home({ spotify }) {
+
+export default function Home() {
   return (
-    <PlayerControl spotify={{ spotify }} />
+    <div>
+      {spotify.RefreshDevices()}
+      smooth player music!
+    </div>
   );
 }

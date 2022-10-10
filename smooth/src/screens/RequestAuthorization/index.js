@@ -6,12 +6,14 @@ import spotify from'./../../_spotify/spotify';
 
 //components
 
+import Loading from "./../../components/Loading";
 
 //functions
 
 export default function RequestAuthorization() { 
      return (
-          <div>     
+          <div>
+               <Loading></Loading>
                {spotify.RequestAuthorization()}
           </div>
      );
