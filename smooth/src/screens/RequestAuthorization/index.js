@@ -14,5 +14,5 @@ export default function RequestAuthorization() {
           <div>     
                {spotify.RequestAuthorization()}
           </div>
-     )
+     );
 }

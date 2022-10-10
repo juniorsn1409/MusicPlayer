@@ -1,4 +1,4 @@
-export const authEndpoint = "http://accounts.spotify.com/authorize";
+const authEndpoint = "http://accounts.spotify.com/authorize";
 
 const redirectUri = "http://localhost:3000/home";
 
@@ -34,6 +34,10 @@ const spotify = {
           localStorage.setItem("client_secret", clientSecret);
 
           return window.location.href = requestUrl;
+     },
+
+     RefreshToken: function() {
+
      }
 
 } 
@@ -41,6 +45,19 @@ export default spotify;
 
 
 // helpers function
+
+export const getTokenFromUrl = () => {
+     return window.location.hash
+     .substring(1)
+     .split("&")
+     .reduce((initial, item) => {
+          //#accessToken = mysupersecretkey&name=mercesnitet
+          var parts = item.split("=");
+          initial[parts[0]] = decodeURIComponent(parts[1]);
+          
+          return initial;
+     }, {});
+}
 
 function handlerRedirect() {
      let code = getCode();
@@ -59,7 +76,6 @@ function getCode() {
      }
      return code;
 }
-
 
 function fetchAccessToken(code) {
      let body = "grant_type=authorization_code";

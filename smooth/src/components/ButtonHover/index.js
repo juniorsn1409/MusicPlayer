@@ -1,14 +1,25 @@
-import React from "react";
+// react dependencies
 
-import "./index.css";
+import React from 'react';
+
+// css dependencies
+
+// import "./index.css";
+
+// spotify dependencies
+
+
+
+//components dependencies
+
 
 export default function ButtonHover() {
   return (
-    <button class="learn-more">
-      <span class="circle" aria-hidden="true">
-        <span class="icon arrow"></span>
+    <button className="learn-more">
+      <span className="circle" aria-hidden="true">
+        <span className="icon arrow"></span>
       </span>
-      <span class="button-text">
+      <span className="button-text">
         request authorization
       </span>
     </button>

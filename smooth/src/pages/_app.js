@@ -1,11 +1,15 @@
+// react dependencies
+
 import React from 'react';
+
+// another dependencies
 
 import RoutesApp from './_routes';
 
 export default function App() {
-     return(
+     return (
           <div>
-               <RoutesApp/>
+               <RoutesApp />
           </div>
      );
 }
