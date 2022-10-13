@@ -10,7 +10,7 @@
   opacity: 0.05;
   z-index: 230;
   user-select: none;
-  user-drag: none;
+  /* user-drag: none; */
 }
 
 .error {

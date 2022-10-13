@@ -1,6 +1,10 @@
+// react dependencies
+
 import React from "react";
 
-// import "./index.css";
+// css dependencies
+
+import "./index.css";
 
 export default function Error404() {
      return (
