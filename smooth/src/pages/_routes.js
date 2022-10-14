@@ -1,10 +1,10 @@
 // react dependencies
-
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; // npm install react-router-dom
 
 // spotify dependencies
 
-import { getToken, spotifyAuth } from './../spotify/spotify'; // npm install axios querystring
+import { getAccesToken } from '../spotify/spotify-accessToken'; 
 
 //screens dependencies
 
@@ -18,7 +18,7 @@ export default function RouterApp() {
      return (
 
           <BrowserRouter>
-               {getToken()}
+               {getAccesToken()}
                <Routes>
                     <Route path="/" element={<RequestAuthorization />} />
                     <Route path="/home" element={<Home />} />

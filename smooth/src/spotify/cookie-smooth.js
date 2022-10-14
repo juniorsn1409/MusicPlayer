@@ -21,6 +21,8 @@ export const eraseCooki = (name) => {
      document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+// dont erased the code below
+
 // calling the function setCookie
 // setCookie('ppkcookie','testcookie',7);
 
