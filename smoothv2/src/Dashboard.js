@@ -58,7 +58,7 @@ export default function Dashboard({code}){
                         return smallest
                     }, track.album.images[0])
                 return {
-                    artist: track.artist[1].name,
+                    //artist: track.artist[0].name,
                     title: track.name,
                     uri: track.uri,
                     albumUrl: smallestAlbumImage.url
@@ -69,8 +69,9 @@ export default function Dashboard({code}){
     }, [search, accessToken])
 
 
-    return <Container className="d-flex flex-columm py-2" style={{height: "100%"}}>
+    return <Container className="d-flex flex-columm py-2" style ={{height: "100%"}}>
         <Form.Control type="search"
+        style={{height: "10%"}}
         placeholder='Buscado de musicas e Artistas'
         value={search}
         onChange={(e) => setSearch(e.target.value)}
