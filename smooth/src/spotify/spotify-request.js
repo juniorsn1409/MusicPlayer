@@ -7,7 +7,7 @@ import querystring from 'querystring'; // npm install querystring
 const stateKey = 'spotify_auth_state';
 
 
-export const request = () => {
+export const getRequest = () => {
 
      const state = generateRamdonString(16);
      setCookie(stateKey, state, 7);
@@ -22,7 +22,11 @@ export const request = () => {
           scope: scope,
      });
 
-     window.location.href = `${AUTHORIZE}?${queryParams}`;
+     const url = AUTHORIZE + '?' + queryParams;
+
+     console.log(url);
+
+     window.location.href = url;
 }
 
 // helpfull functions
