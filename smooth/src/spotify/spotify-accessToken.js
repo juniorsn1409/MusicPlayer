@@ -1,15 +1,7 @@
-import { TOKEN, REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN } from './env-smooth';
+import { TOKEN, REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN } from './env-smooth';
 
-import { useState, useEffect } from 'react';
-
-import { setCookie, getCookie } from './cookie-smooth';
-
-// import SpotifyWebApi from 'spotify-web-api-js';
-
-import querystring from 'querystring';
 import request from 'request';
 import Buffer from 'Buffer';
-import axios from 'axios';
 
 export const getAccesToken = () => {
 
@@ -33,7 +25,12 @@ export const getAccesToken = () => {
     request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
 
+            console.log("RESPONSE -> ", response);
+            console.log("BODY -> ", body);
+            console.log("ERROR -> ", error);
+
             localStorage.setItem(ACCESS_TOKEN, body.access_token);
+            localStorage.setItem(REFRESH_TOKEN, body.refresh_token);
         }
     });
 
