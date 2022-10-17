@@ -3,7 +3,7 @@ import { TOKEN, REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TO
 import { refreshToken } from './spotify-refreshToken';
 
 import request from 'request';
-import Buffer from 'Buffer';
+import Buffer from 'Buffer'; //npm install Buffer
 
 export const getAccesToken = () => {
 
@@ -11,8 +11,6 @@ export const getAccesToken = () => {
     const expirationToken = getExpirationToken();
 
     if (expirationToken < Date.now()) {
-
-        console.log('Token expired');
 
         var authOptions = {
             url: TOKEN,
@@ -40,6 +38,7 @@ export const getAccesToken = () => {
                 localStorage.setItem(ACCESS_TOKEN, body.access_token);
                 localStorage.setItem(REFRESH_TOKEN, body.refresh_token);
                 localStorage.setItem(EXPIRES_IN, expirationToken);
+                window.history.pushState({}, null,'/home')
 
             } else {
                 console.log(error);
@@ -47,6 +46,7 @@ export const getAccesToken = () => {
         });
     } else {
         console.log("Token is still valid");
+        window.history.pushState({}, null,'/home')
     }
 }
 
@@ -74,6 +74,6 @@ export const getState = () => {
 
 export const getExpirationToken = () => {
     const expiration = localStorage.getItem(EXPIRES_IN);
-    console.log("EXPIRATION -> ", expiration);
+    // console.log("EXPIRATION -> ", expiration);
     return expiration;
 }

@@ -2,54 +2,76 @@
 
 import React, { useState, useEffect } from "react";
 
-import request from 'request';
+// bootstrapped dependencies
+
+import { Container } from 'react-bootstrap';
 
 // spotify dependencies
-// import { defaultApi } from "./../../spotify/spotify-consumingEndpoint";
 
-// css dependencies
+import { getTokenFromLocation } from './../../spotify/location-smooth'
+
+// other dependencies
+
+import request from 'request';
 
 import "./index.css";
 
-//components dependencies
-
-const token = localStorage.getItem('access_token');
-const search = 'metalica';
-
-const options = {
-  url: `https://api.spotify.com/v1/search?q=${search}&type=track&include_external=audio`,
-  headers: {
-    'Authorization': 'Bearer ' + token,
-    'content-type': 'application/json',
-  },
-  json: true
-};
-
 export default function Home() {
 
-  request.get(options, function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-      console.log(body);
+  const [searchInput, setSearchInput] = useState("");
+  const token = getTokenFromLocation();
 
-    } else {
-      console.log(error);
+  async function search() {
+
+    var url = `https://api.spotify.com/v1/search?q=${searchInput}&type=track,artist,album,playlist`;
+
+    const options = {
+      url: url,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'content-type': 'application/json',
+      },
+      json: true
+    };
+
+    request.get(options, function (error, response, body) {
+      console.log("SEARCH -> ", body);
+
+      console.log("SEARCH -> ", body.tracks.items[0].id);
+      console.log("SEARCH -> ", body.tracks.items[0].name);
     }
-  });
+    );
+  }
 
   return (
-    <div className="home">
-      <h1>Search Page</h1>
 
-      <div className="search">
-        <input type="text" placeholder="Search for Songs" />
-        <button> Search </button>
-      </div>
-      <br /><br />
-      <div className="search-results">
+    <Container className="home-container">
+      <input type="text" placeholder="Search for Songs"
 
-      </div>
+        onKeyDownCapture={event => {
+          setSearchInput(inputKeyPress(event));
 
-    </div>
+          if (event.key === 'Enter') {
+            search();
+          }
+
+        }}
+
+      />
+    </Container>
+
+
+
+
   );
 
+}
+
+
+function inputKeyPress(event) {
+  if (event.key === 'Enter') {
+    console.log('inputKeyPress ->' + event.target.value);
+  }
+
+  return event.target.value;
 }
