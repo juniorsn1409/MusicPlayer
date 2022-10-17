@@ -4,8 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'; // npm install 
 
 // spotify dependencies
 
-import { getAccesToken } from '../spotify/spotify-accessToken';
-import { getRefreshToken } from '../spotify/spotify-refreshToken';  
+import { getAccesToken } from '../spotify/spotify-accessToken'; 
 
 //screens dependencies
 
@@ -20,7 +19,6 @@ export default function RouterApp() {
 
           <BrowserRouter>
                {getAccesToken()}
-               {getRefreshToken()}
                <Routes>
                     <Route path="/" element={<RequestAuthorization />} />
                     <Route path="/home" element={<Home />} />

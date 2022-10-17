@@ -1,4 +1,6 @@
-import { TOKEN, REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN } from './env-smooth';
+import { TOKEN, REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN, EXPIRES_IN } from './env-smooth';
+
+import { refreshToken } from './spotify-refreshToken';
 
 import request from 'request';
 import Buffer from 'Buffer';
@@ -6,38 +8,47 @@ import Buffer from 'Buffer';
 export const getAccesToken = () => {
 
     const code = getCode();
+    const expirationToken = getExpirationToken();
 
-    var authOptions = {
-        url: TOKEN,
-        headers: {
-            'Authorization': 'Basic ' + (new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64')),
+    if (expirationToken < Date.now()) {
 
-        },
-        form: {
-            'grant_type': 'authorization_code',
-            'redirect_uri': REDIRECT_URI,
-            'code': code,
-        },
-        json: true
-    };
+        console.log('Token expired');
 
+        var authOptions = {
+            url: TOKEN,
+            headers: {
+                'Authorization': 'Basic ' + (new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64')),
 
-    request.post(authOptions, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
+            },
+            form: {
+                'grant_type': 'authorization_code',
+                'redirect_uri': REDIRECT_URI,
+                'code': code,
+            },
+            json: true
+        };
 
-            console.log("RESPONSE -> ", response);
-            console.log("BODY -> ", body);
-            console.log("ERROR -> ", error);
+        request.post(authOptions, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
 
-            localStorage.setItem(ACCESS_TOKEN, body.access_token);
-            localStorage.setItem(REFRESH_TOKEN, body.refresh_token);
-        }
-    });
+                // console.log("RESPONSE -> ", response);
+                // console.log("BODY -> ", body);
+                // console.log("ERROR -> ", error);
 
+                var expirationToken = body.expires_in + Date.now();
 
+                localStorage.setItem(ACCESS_TOKEN, body.access_token);
+                localStorage.setItem(REFRESH_TOKEN, body.refresh_token);
+                localStorage.setItem(EXPIRES_IN, expirationToken);
 
+            } else {
+                console.log(error);
+            }
+        });
+    } else {
+        console.log("Token is still valid");
+    }
 }
-
 
 // helpfull functions
 
@@ -59,4 +70,10 @@ export const getState = () => {
         state = urlParams.get('state')
     }
     return state;
+}
+
+export const getExpirationToken = () => {
+    const expiration = localStorage.getItem(EXPIRES_IN);
+    console.log("EXPIRATION -> ", expiration);
+    return expiration;
 }
