@@ -50,6 +50,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: StreamBuilder<ConnectionStatus>(
         stream: SpotifySdk.subscribeConnectionStatus(),
         builder: (context, snapshot) {
@@ -60,12 +61,14 @@ class _HomeState extends State<Home> {
           }
           return Scaffold(
             appBar: AppBar(
-              title: const Text('SpotifySdk Example'),
+              backgroundColor: Color.fromARGB(251, 41, 8, 86),
+              title: const Text('Carmina Spotify SDK Clone'),
               actions: [
                 _connected
                     ? IconButton(
                         onPressed: disconnect,
                         icon: const Icon(Icons.exit_to_app),
+                        color: Colors.white,
                       )
                     : Container()
               ],
@@ -143,7 +146,7 @@ class _HomeState extends State<Home> {
                 ),
                 TextButton(
                   onPressed: getAccessToken,
-                  child: const Text('get auth token '),
+                  child: const Text('Requisição de Token '),
                 ),
               ],
             ),
@@ -185,11 +188,11 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 TextButton(
                   onPressed: seekTo,
-                  child: const Text('seek to 20000ms'),
+                  child: const Text('busca com 20000ms'),
                 ),
                 TextButton(
                   onPressed: seekToRelative,
-                  child: const Text('seek to relative 20000ms'),
+                  child: const Text('busca com relativo 20000ms'),
                 ),
               ],
             ),
@@ -204,7 +207,7 @@ class _HomeState extends State<Home> {
             ElevatedButton(
               onPressed: getCrossfadeState,
               child: const Text(
-                'get crossfade state',
+                'Busque animação se houver',
               ),
             ),
             // ignore: prefer_single_quotes
