@@ -1,0 +1,35 @@
+.sidebar .logo {
+     display: none;
+     width: 30px;
+     height: 30px;
+     background-color: #22b07d;
+     flex-shrink: 0;
+     color: #fff;
+     align-items: center;
+     border-radius: 50%;
+     justify-content: center;
+   }
+
+   .sidebar .logo-expand {
+     text-decoration: none;
+     color: #fff;
+     font-size: 19px;
+     font-weight: 600;
+     line-height: 34px;
+     position: sticky;
+     top: 0;
+   }
+   .sidebar .logo-expand:before {
+     content: "";
+     position: absolute;
+     top: -30px;
+     left: 0;
+     background: var(--theme-bg);
+     width: 200px;
+     height: 70px;
+     z-index: -1;
+   }
+
+   .sidebar.logo-expand {
+  display: none;
+}

@@ -1,0 +1,16 @@
+
+.container {
+  background-color: var(--theme-bg);
+  max-width: 99.9%;
+  max-height: 99.9%;
+  height: 95vh;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+

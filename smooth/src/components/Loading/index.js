@@ -149,9 +149,6 @@ const template = `
 customElements.define(
 	"ui-loader",
 	class extends HTMLElement {
-		constructor() {
-			super();
-		}
 		connectedCallback() {
 			this.attachShadow({ mode: "open" });
 			this.shadowRoot.innerHTML = template;

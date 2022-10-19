@@ -15,10 +15,10 @@ import "./../base.css";
 
 // =================================================================== //
 
-export default function BaseComponent() {
+export default function SideTitle({desc}) {
   return (
-    <div>
-
+    <div className="side-title">
+      {desc}
     </div>
   );
 }

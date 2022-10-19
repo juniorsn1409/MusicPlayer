@@ -10,9 +10,7 @@ import { getAccesToken } from '../spotify/spotify-accessToken';
 
 import Error404 from './../screens/Error404';
 import Home from './../screens/Home';
-import RequestAuthorization from '../screens/ResquestAuthorization';
-
-//components
+import RequestAuthorization from './../screens/ResquestAuthorization';
 
 export default function RouterApp() {
      return (

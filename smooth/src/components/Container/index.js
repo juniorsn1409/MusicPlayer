@@ -11,13 +11,13 @@ import React from 'react';
 // css dependencies
 
 import "./index.css";
-import "./../base.css";
+import "./../StyleSheetBase.css";
 
 // =================================================================== //
 
-export default function BaseComponent() {
+export default function Container() {
   return (
-    <div>
+    <div className="container">
 
     </div>
   );
