@@ -1,22 +1,69 @@
 // react dependencies
 
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
 // spotify dependencies
+
+import { getTokenFromLocation } from './../../spotify/location-smooth'
 
 // components dependencies
 
 import SearchBar from './../../components/SearchBar';
 import Logo from './../../components/Logo';
 import SidebarLink from './../../components/SidebarLink';
-// import UserSettings from './../../components/UserSettings';
-
 
 // css dependencies
+
 import "./index.css";
 import "./../../components/base.css";
 
+// other dependencies
+
+import request from 'request';
+
+// =================================================================== //
+
 export default function Home() {
+
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState("");
+
+  const token = getTokenFromLocation();
+
+  async function search() {
+
+    var url = `https://api.spotify.com/v1/search?q=${searchInput}&type=track,artist,album,playlist`;
+
+    const options = {
+      url: url,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'content-type': 'application/json',
+      },
+      json: true
+    };
+
+    request.get(options, function (error, response, body) {
+
+      if (!error && response.statusCode === 200) {
+
+        // console.log("SEARCH -> ", body);
+        // console.log("SEARCH -> ", body.tracks.items[0].id);
+        // console.log("SEARCH -> ", body.tracks.items[0].name);
+
+        response.body.tracks.items.forEach(element => {
+          console.log("MUSICA -> ", element.name);
+          
+        });
+
+        setSearchResults(response.body.tracks.items.name);
+
+      } else {
+        console.log(error);
+      }
+    }
+    );
+  }
 
   return (
     <div className="container">
@@ -34,18 +81,38 @@ export default function Home() {
           <div className="side-menu">
             <SidebarLink desc="Suas músicas" Link="#" path="M7.33 2h9.34c3.4 0 5.32 1.93 5.33 5.33v9.34c0 3.4-1.93 5.33-5.33 5.33H7.33C3.93 22 2 20.07 2 16.67V7.33C2 3.93 3.93 2 7.33 2zm4.72 15.86c.43 0 .79-.32.83-.75V6.92a.815.815 0 00-.38-.79.84.84 0 00-1.28.79v10.19c.05.43.41.75.83.75zm4.6 0c.42 0 .78-.32.83-.75v-3.28a.839.839 0 00-1.28-.79.806.806 0 00-.38.79v3.28c.04.43.4.75.83.75zm-8.43-.75a.827.827 0 01-.83.75c-.43 0-.79-.32-.83-.75V10.2a.84.84 0 01.39-.79c.27-.17.61-.17.88 0s.42.48.39.79v6.91z" />
           </div>
-          {/* <SideTilte desc="rock" /> */}
         </div>
       </div>
       <div className="wrapper">
         <div className="header">
-          <SearchBar />
+          <div className="search-bar">
+            <input type="text" placeholder="Search"
+
+              onKeyDownCapture={event => {
+                setSearchInput(inputKeyPress(event));
+
+                if (event.key === 'Enter') {
+                  search();
+                }
+
+              }}
+
+            />
+          </div>
+
         </div>
         <div className="main-container">
-          <div className="left-container">left-container</div>
-          <div className="right-container">right-container</div>
+          <div className="left-container">
+          {searchResults}
+          </div>
+          <div className="right-container">
+
+
+          </div>
         </div>
-        <div className="player-music">player-music</div>
+        <div className="player-music">
+          player-music
+        </div>
       </div>
 
     </div>
@@ -53,4 +120,10 @@ export default function Home() {
 
 }
 
+function inputKeyPress(event) {
+  if (event.key === 'Enter') {
+    console.log('inputKeyPress ->' + event.target.value);
+  }
 
+  return event.target.value;
+}

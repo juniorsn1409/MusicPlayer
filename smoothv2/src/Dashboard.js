@@ -35,6 +35,7 @@ export default function Dashboard({code}){
             },
           })
           .then(res => {
+            console.log(res.data)
             setLyrics(res.data.lyrics)
           })
       }, [playingTrack])
@@ -58,7 +59,7 @@ export default function Dashboard({code}){
                         return smallest
                     }, track.album.images[0])
                 return {
-                    //artist: track.artist[0].name,
+                    // artist: track.artist[0].name,
                     title: track.name,
                     uri: track.uri,
                     albumUrl: smallestAlbumImage.url

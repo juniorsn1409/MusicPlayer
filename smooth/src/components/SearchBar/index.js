@@ -1,6 +1,6 @@
 // react dependencies
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 // other dependencies
 
@@ -46,6 +46,8 @@ export default function SearchBar() {
         response.body.tracks.items.forEach(element => {
           console.log("MUSICA -> ", element.name);
         });
+
+
       } else {
         console.log(error);
       }
