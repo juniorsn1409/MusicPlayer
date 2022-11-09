@@ -1,7 +1,7 @@
 .search-bar {
     height: 34px;
     display: flex;
-    width: 100%;
+    width: 95%;
     max-width: 1500px;
     padding-bottom: 20px;
   }
