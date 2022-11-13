@@ -4,18 +4,6 @@
 }
 
 .sidebar-link:hover {
-  color: rgba(115, 0, 255, 0.315);
+  color: rgba(80, 80, 80, 0.350);
   font-weight: 600;
 }
-/* .sidebar-link:hover:nth-child(2n + 1) svg,
-.sidebar-link.is-active:nth-child(2n + 1) svg {
-  background: #ff7551;
-}
-.sidebar-link:hover:nth-child(2n) svg,
-.sidebar-link.is-active:nth-child(2n) svg {
-  background: #32a7e2;
-}
-.sidebar-link:hover:nth-child(2n + 3) svg,
-.sidebar-link.is-active:nth-child(2n + 3) svg {
-  background: #6c5ecf;
-} */

@@ -2,7 +2,10 @@
 
 :root {
   --body-font: "Inter", sans-serif;
-  --body-color: #808191;
+  --body-color: #eeeeee;
+  --text-color: #353535;
+  --text-white: #f2f7f2;
+  --search-bg: #353535;
 }
 
 body {

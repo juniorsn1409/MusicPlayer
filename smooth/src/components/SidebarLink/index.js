@@ -15,7 +15,7 @@ import "./../base.css";
 
 // =================================================================== //
 
-export default function SidebarLink({link, desc, path, isActive}) {
+export default function SidebarLink({ link, desc, path, isActive }) {
 
   var active = "";
 
@@ -23,8 +23,8 @@ export default function SidebarLink({link, desc, path, isActive}) {
     active = "is-active";
   }
 
-  return(
-    <a className={`sidebar-link  ${active}`}  href={link}>
+  return (
+    <a className={`sidebar-link  ${active}`} href={link}>
       <svg viewBox="0 0 24 24" fill="currentColor">
         <path d={path} />
       </svg>
