@@ -180,7 +180,7 @@
    
    .music:hover {
      border-radius: 5px;
-     background-color: rgba(101, 72, 181, 0.5);
+     background-color: rgba(255, 255, 255, 0.5);
    }
    .esquerda {
      display: flex;

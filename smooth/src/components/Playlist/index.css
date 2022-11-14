@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
-
 :root {
   --body-font: "Inter", sans-serif;
 
   --background-color: #1F1F1F;
-  --text-color: #F2F5EA;
+  --text-color: #f2f5ead6;
+
+  --border-color: var(--color-white);
 
   --color-black: #3D3D3D;
   --color-white: #F4EBE8;
@@ -14,8 +14,9 @@
 
 }
 
-body {
-  font-family: var(--body-font);
-  color: var(--text-color);
+.playlist {
+  font-size: 15px;
+  letter-spacing: 0.07em;
+  margin: 5px 5px 5px 15px;
+  color: var(--text-color)
 }
-

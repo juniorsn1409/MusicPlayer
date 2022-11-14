@@ -25,7 +25,7 @@ export default function SidebarLink({ link, desc, path, isActive }) {
 
   return (
     <a className={`sidebar-link  ${active}`} href={link}>
-      <svg viewBox="0 0 24 24" fill="currentColor">
+      <svg className="icon-side" viewBox="0 0 24 24" fill="currentColor">
         <path d={path} />
       </svg>
       {desc}

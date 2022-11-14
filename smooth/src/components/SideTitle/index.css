@@ -1,9 +1,6 @@
-.sidebar .side-title {
-  display: none;
-}
-
 .side-title {
-     font-size: 12px;
-     letter-spacing: 0.07em;
-     margin-bottom: 24px;
-   }
+  font-size: 15px;
+  letter-spacing: 0.07em;
+  margin-bottom: 24px;
+  margin-left: 15px;
+}
