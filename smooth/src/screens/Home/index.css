@@ -12,6 +12,7 @@
   --color-blueViolet: #6B76DB;
   --color-blueStrong: #222a68;
 
+  --Volume-Icon-Size:16px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
@@ -28,7 +29,7 @@ body {
 
 .container {
   width: 100%;
-  height: 96vh;
+  height: 98vh;
   font-size: 15px;
   font-weight: 500;
   display: flex;
@@ -39,7 +40,7 @@ body {
 
 .main {
   width: 100%;
-  height: 90%;
+  height: 85%;
   display: flex;
   flex-direction: row;
 }
@@ -48,8 +49,11 @@ body {
   width: 100%;
   height: 10%;
   display: flex;
+  bottom:0;left:0;
+  z-index:69;
+  position: fixed;
   flex-direction: row;
-  background-color: #6B76DB;
+  background-color: var(--color-black);
 }
 
 .sidebar {
@@ -72,7 +76,7 @@ body {
   height: 10%;
   display: block;
   flex-direction: row;
-  background-color: #222a68;
+  /* background-color: #222a68; */
   justify-content: center;
   align-items: center;
 }
@@ -82,7 +86,7 @@ body {
   height: 90%;
   display: flex;
   flex-direction: column;
-  background-color: #ff0099;
+  /* background-color: #ff0099; */
   flex-grow: 1;
   overflow: hidden;
   overflow-y: scroll;
@@ -195,15 +199,24 @@ body {
 .esquerda {
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 60%;
+  /* background-color: #172184; */
+}
+
+.meio {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  /* background-color: #333c88; */
 }
 
 .direita {
-  width: 30%;
-  display: flex;
+  width: 15%;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #6c72a8; */
 }
 
 .music-img {
@@ -226,24 +239,115 @@ body {
   display: flex;
   flex-direction: row;
   max-width: 100%;
-  padding: 10px 10px 10px 10px;
-  height: 10%;
+  padding: 10px 10px 0px 10px;
+  height: 115%;
 }
 
 
 
 .svg-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0px 10px 15px 10px;
+  color: var(--color-blue);
 }
 
 .svg-icon path,
 .svg-icon polygon,
 .svg-icon rect {
-  fill: rgba(0, 0, 0, 0.2);
+  fill: var(--color-white);
 }
 
 .svg-icon circle {
-  stroke: #4691f6;
+  stroke: var(--color-white);
   stroke-width: 1;
+}
+
+/* player music */
+
+.song {
+  display:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:25%;
+}
+
+.song:first-of-type {
+  display:block;
+}
+
+.song-name {
+  font-family:abel;
+  font-size:var(--Song-Name-Font-Size);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  color:var(--Song-Name-Color);
+}
+
+.artist-name {
+  font-family:sintony;
+  font-size:var(--Artist-Name-Font-Size);
+  color:var(--Artist-Name-Color);
+}
+
+.flex {
+  display:flex;
+  align-items:center;
+}
+
+.album-image {
+  margin-right:15px;
+  width:100px;
+  height:100px;
+  border-radius:3px;
+}
+
+.music-text {
+  line-height:1.7em;
+}
+
+/* controls */
+
+.controls {
+  display:flex;
+  align-items:center;
+  flex-direction: column;
+  justify-content:center;
+  /* background-color: var(--color-black); */
+  width:50%;
+}
+
+.controls-buttons {
+  /* background-color: rgb(106, 69, 69); */
+  height: 50%;
+  width: 100%;
+}
+
+.progress-bar {
+  /* background-color: rgb(255, 255, 255); */
+  height: 50%;
+  width: 100%;
+}
+
+/* volume control */
+
+ .volume-bar {
+  /* background-color: rgb(59, 59, 59); */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  width:25%;
+ }
+
+ .mutemax {
+    
+}
+
+.mutemax svg {
+    padding:7px;
+    width:var(--Volume-Icon-Size);
+    height:var(--Volume-Icon-Size);
+    color:var(--color-white);
 }
