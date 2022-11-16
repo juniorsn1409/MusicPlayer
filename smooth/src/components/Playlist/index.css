@@ -11,6 +11,7 @@
   --color-blue: #9DA4E7;
   --color-blueViolet: #6B76DB;
   --color-blueStrong: #222a68;
+  --color-cinza: #ffffff81;
 
 }
 
@@ -19,4 +20,9 @@
   letter-spacing: 0.07em;
   margin: 5px 5px 5px 15px;
   color: var(--text-color)
+}
+
+.playlist:hover {
+  color: var(--color-cinza);
+  cursor: pointer;
 }
