@@ -4,7 +4,7 @@ import React from "react";
 
 // _spotify api
 
-import {getRequest} from "./../../spotify/spotify-requestAccess";
+import {getRequest} from "./../../spotify/authorization/requestAccess";
 
 //components
 

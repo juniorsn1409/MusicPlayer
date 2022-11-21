@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'; // npm install 
 
 // spotify dependencies
 
-import { getAccesToken } from '../spotify/spotify-accessToken'; 
+import { getAccesToken } from '../spotify/authorization/accessToken'; 
 
 //screens dependencies
 

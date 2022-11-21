@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 
 // spotify dependencies
 
-import { getTokenFromLocation, getRefreshTokenFromLocation } from "./../../spotify/location-smooth";
-import { minutesAndSeconds } from "./../../spotify/minutesAndSeconds";
+import { getSearch } from "./../../spotify/endpoints/get_search";
+import { minutesAndSeconds } from "../../spotify/helpful/minutesAndSeconds";
 
 // components dependencies
 
@@ -17,42 +17,14 @@ import Plalist from "./../../components/Playlist";
 // css dependencies
 
 import "./index.css";
-// import "./../../components/base.css";
 
 // other dependencies
-
-import request from "request";
 
 // =================================================================== //
 
 export default function Home() {
-  const token = getTokenFromLocation();
-  const refresh_token = getRefreshTokenFromLocation();
 
-  const [searchInput, setSearchInput] = useState("");
   const [track, setTrack] = useState("");
-
-  async function search() {
-    var url = `https://api.spotify.com/v1/search?q=${searchInput}&type=track,artist,album,playlist`;
-
-    const options = {
-      url: url,
-      headers: {
-        Authorization: "Bearer " + token,
-        "content-type": "application/json",
-      },
-      json: true,
-    };
-
-    request.get(options, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-
-        setTrack(body.tracks.items);
-      } else {
-        console.log(error);
-      }
-    });
-  }
 
   return (
     <div className="container">
@@ -96,9 +68,8 @@ export default function Home() {
                 type="text"
                 placeholder="Procurar músicas"
                 onKeyPress={(e) => {
-                  setSearchInput(e.target.value)
+                  getSearch(e.target.value, track);
                 }}
-                onChange={ search()}
               />
             </div>
           </div>

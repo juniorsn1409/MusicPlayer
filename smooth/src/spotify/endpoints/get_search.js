@@ -1,14 +1,16 @@
-import { ACCESS_TOKEN } from './env-smooth';
+
+import { ACCESS_TOKEN } from '../helpful/env-smooth';
 
 
 import request from 'request';
 
-export const defaultApi = (endpoint) => {
+export const getSearch = (input) => {
 
      const token = localStorage.getItem(ACCESS_TOKEN);
+     const url = `https://api.spotify.com/v1/search?q=${input}&type=track,artist,album,playlist`;
 
      const options = {
-          url: `https://api.spotify.com/v1/${endpoint}`,
+          url: url,
           headers: {
                'Authorization': 'Bearer ' + token,
                'content-type': 'application/json',
@@ -17,12 +19,16 @@ export const defaultApi = (endpoint) => {
      };
 
      request.get(options, function (error, response, body) {
+
           if (!error && response.statusCode === 200) {
-               const date = JSON.stringify(body);
-               
+               console.log("GET-SEARCH -> ", body);
+               return body.tracks.items;
           } else {
-               console.log(error);
+               console.log("ERROR GET-SEARCH -> ", error);
           }
+          
      });
 
 }
+
+// Path: src\spotify\endpoints\get_search.js

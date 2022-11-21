@@ -1,11 +1,10 @@
-import { AUTHORIZE, REDIRECT_URI, CLIENT_ID } from './env-smooth';
+import querystring from 'querystring';
 
-import { setCookie } from './cookie-smooth';
-
-import querystring from 'querystring'; // npm install querystring
+import { setCookie } from '../helpful/cookie-smooth';
+import { generateRamdonString } from '../helpful/generateRamdonString';
+import { AUTHORIZE, REDIRECT_URI, CLIENT_ID } from '../helpful/env-smooth';
 
 const stateKey = 'spotify_auth_state';
-
 
 export const getRequest = () => {
 
@@ -27,16 +26,4 @@ export const getRequest = () => {
      console.log(url);
 
      window.location.href = url;
-}
-
-// helpfull functions
-
-const generateRamdonString = (length) => {
-     let text = '';
-     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-     for (let i = 0; i < length; i++) {
-          text += possible.charAt(Math.floor(Math.random() * possible.length));
-     }
-     return text;
 }

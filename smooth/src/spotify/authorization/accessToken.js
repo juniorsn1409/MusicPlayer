@@ -1,14 +1,14 @@
-import { TOKEN, REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN, EXPIRES_IN } from './env-smooth';
+import { TOKEN, REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN, EXPIRES_IN } from './../helpful/env-smooth';
 
-// import { refreshToken } from './spotify-refreshToken';
+import { getExpirationTime } from './../helpful/getExpirationTime'; 
 
 import request from 'request';
-import Buffer from 'Buffer'; //npm install Buffer
+import Buffer from 'Buffer';
 
 export const getAccesToken = () => {
 
     const code = getCode();
-    const expirationToken = getExpirationToken();
+    const expirationToken = getExpirationTime();
 
     if (expirationToken < Date.now()) {
 
@@ -72,8 +72,3 @@ export const getState = () => {
     return state;
 }
 
-export const getExpirationToken = () => {
-    const expiration = localStorage.getItem(EXPIRES_IN);
-    // console.log("EXPIRATION -> ", expiration);
-    return expiration;
-}
