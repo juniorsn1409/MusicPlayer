@@ -15,7 +15,7 @@ import "./../base.css";
 
 // =================================================================== //
 
-export default function Plalist({desc}) {
+export default function Playlist({desc}) {
   return (
     <div className="playlist">
       {desc}

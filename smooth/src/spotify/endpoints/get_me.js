@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN, PLAYLISTS } from '../env-smooth';
+import { ACCESS_TOKEN, ME } from './../helpful/env-smooth';
 
 
 import request from 'request';
@@ -6,7 +6,7 @@ import request from 'request';
 export const getMe = () => {
 
      const token = localStorage.getItem(ACCESS_TOKEN);
-     const url = PLAYLISTS;
+     const url = ME;
 
      const options = {
           url: url,
@@ -18,7 +18,10 @@ export const getMe = () => {
      };
 
      request.get(options, function (error, response, body) {
-          console.log("GET-ME -> ", body);
+          console.log("GET-ME -> ", body.id);
+          return body.id;
      });
 
 }
+
+// Path: src\spotify\endpoints\get_me.js

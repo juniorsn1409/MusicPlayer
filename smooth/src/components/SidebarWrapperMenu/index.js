@@ -4,6 +4,8 @@ import React from 'react';
 
 // other dependencies
 
+import SideTitle from '../SideTitle';
+import SideMenu from '../SideMenu';
 
 //spotify dependencies
 
@@ -11,13 +13,16 @@ import React from 'react';
 // css dependencies
 
 import "./index.css";
-import "../base.css";
+import "./../base.css";
 
 // =================================================================== //
 
-export default function BaseComponent() {
+export default function SidebarWrapper() {
   return (
-    <div>
+    <div className="side-wrapper">
+
+      <SideTitle desc="MENU" />
+      <SideMenu />
 
     </div>
   );

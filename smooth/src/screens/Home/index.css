@@ -99,14 +99,6 @@ body {
 }
 
 /* lado esquedo */
-.side {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  overflow-y: scroll;
-}
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -118,26 +110,13 @@ body {
   border-radius: 10px;
 }
 
-.side-wrapper {
-  border-bottom: 1px solid var(--border-color);
-  padding: 36px 0;
-  width: 100%;
-  margin-left: 15px;
-}
-.side-wrapper + .side-wrapper {
-  border-bottom: none;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.side-menu {
-  display: flex;
-  flex-direction: column;
-}
+
 
 /* lado direito */
 
