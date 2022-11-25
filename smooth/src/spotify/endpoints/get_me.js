@@ -3,7 +3,7 @@ import { ACCESS_TOKEN, ME } from './../helpful/env-smooth';
 
 import request from 'request';
 
-export const getMe = () => {
+export function getMe() {
 
      const token = localStorage.getItem(ACCESS_TOKEN);
      const url = ME;

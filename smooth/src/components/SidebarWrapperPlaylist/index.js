@@ -1,6 +1,6 @@
 // react dependencies
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // other dependencies
 
@@ -30,11 +30,15 @@ export default function SidebarWrapperPlaylist(id) {
 
   const userID = "y0k4jdu5z22fxnek2dh33x3ra";
 
-  async function getPlaylist(id) {
+  const user_getMe = getMe();
+
+  async function getPlaylist() {
+
+    // e.preventDefault();
 
     const token = localStorage.getItem(ACCESS_TOKEN);
 
-    const url = `https://api.spotify.com/v1/users/${id}/playlists`;
+    const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
 
     const options = {
       url: url,
@@ -58,8 +62,11 @@ export default function SidebarWrapperPlaylist(id) {
     });
   }
 
+  useEffect(() => {
+    getPlaylist();
+  }, [])
 
-  // getPlaylist(userID);
+
 
   return (
 
