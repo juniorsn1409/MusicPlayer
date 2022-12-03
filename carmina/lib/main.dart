@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -12,16 +13,15 @@ import 'package:spotify_sdk/models/player_context.dart';
 import 'package:spotify_sdk/models/player_state.dart';
 import 'package:spotify_sdk/spotify_sdk.dart';
 
+import 'list_music.dart';
 import 'widgets/sized_icon_button.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
+
   runApp(const Home());
 }
 
-/// A [StatefulWidget] which uses:
-/// * [spotify_sdk](https://pub.dev/packages/spotify_sdk)
-/// to connect to Spotify and use controls.
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -33,13 +33,12 @@ class _HomeState extends State<Home> {
   bool _loading = false;
   bool _connected = false;
   final Logger _logger = Logger(
-    //filter: CustomLogFilter(), // custom logfilter can be used to have logs in release mode
     printer: PrettyPrinter(
-      methodCount: 2, // number of method calls to be displayed
-      errorMethodCount: 8, // number of method calls if stacktrace is provided
-      lineLength: 120, // width of the output
-      colors: true, // Colorful log messages
-      printEmojis: true, // Print an emoji for each log message
+      methodCount: 2,
+      errorMethodCount: 8,
+      lineLength: 120,
+      colors: true,
+      printEmojis: true,
       printTime: true,
     ),
   );
@@ -75,6 +74,33 @@ class _HomeState extends State<Home> {
             ),
             body: _sampleFlowWidget(context),
             bottomNavigationBar: _connected ? _buildBottomBar(context) : null,
+            drawer: Drawer(
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.star),
+                    title: Text("Favoritos"),
+                    subtitle: Text("Meus Favoritos"),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const ListMusic())));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.star),
+                    title: Text("Recolher"),
+                    subtitle: Text("Fechar"),
+                    trailing: Icon(Icons.arrow_back),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  )
+                ],
+              ),
+            ),
           );
         },
       ),
@@ -84,7 +110,7 @@ class _HomeState extends State<Home> {
   Widget _buildBottomBar(BuildContext context) {
     return BottomAppBar(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
