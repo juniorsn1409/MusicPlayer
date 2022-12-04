@@ -3,15 +3,23 @@
 :root {
   --body-font: "Inter", sans-serif;
 
-  --background-color: #1F1F1F;
-  --text-color: #F2F5EA;
+  --background-color: #1f1f1f;
+  --text-color: #f2f5ea;
 
-  --color-black: #3D3D3D;
-  --color-white: #F4EBE8;
-  --color-blue: #9DA4E7;
-  --color-blueViolet: #6B76DB;
+  --border-color: var(--color-white);
+
+  --color-black: #3d3d3d;
+  --color-white: #f4ebe8;
+  --color-blue: #9da4e7;
+  --color-blueViolet: #6b76db;
   --color-blueStrong: #222a68;
 
+  
+  --Volume-Icon-Size: 16px;
+  --Music-Controls-Size: 16px;
+  --Music-Controls-Color: #bdbce7;
+  --Music-Controls-Spacing: 13px;
+  --Play-Button-Padding: 9px;
 }
 
 body {

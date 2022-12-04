@@ -18,7 +18,7 @@ import "./../base.css";
 export default function Logo() {
   return (
     <div>
-      <a className="logo-expand" href="#">Smooth Music</a>
+      <a className="logo-expand" href="/">Smooth Music</a>
     </div>
   );
 }

@@ -1,12 +1,12 @@
-import { ACCESS_TOKEN, ME } from './../helpful/env-smooth';
+import { ACCESS_TOKEN, CURRENTPLAYING } from './../helpful/env-smooth';
 
 
 import request from 'request';
 
-export function getMe() {
+export function getCurrentTrack() {
 
      const token = localStorage.getItem(ACCESS_TOKEN);
-     const url = ME;
+     const url = CURRENTPLAYING;
 
      const options = {
           url: url,
@@ -18,11 +18,10 @@ export function getMe() {
      };
 
      request.get(options, function (error, response, body) {
-          console.log("GET-ME -> ", body.id);
-          localStorage.setItem("user_id", body.id);
+          console.log("CURRENT PLAYING -> ", body);
           return body.id;
      });
 
 }
 
-// Path: src\spotify\endpoints\get_me.js
+// Path: src\spotify\endpoints\get_current_track.js

@@ -2,6 +2,7 @@
   border-bottom: 1px solid var(--border-color);
   padding: 36px 0;
   width: 100%;
+  /* background-color: blue; */
   margin-left: 15px;
 }
 .side-wrapper + .side-wrapper {

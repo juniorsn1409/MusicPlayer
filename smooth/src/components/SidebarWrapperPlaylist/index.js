@@ -12,9 +12,7 @@ import Playlist from '../Playlist';
 //spotify dependencies
 
 
-import { ACCESS_TOKEN, ME } from '../../spotify/helpful/env-smooth';
-
-import { getMe } from '../../spotify/endpoints/get_me';
+import { ACCESS_TOKEN } from '../../spotify/helpful/env-smooth';
 
 // css dependencies
 
@@ -23,18 +21,13 @@ import "./../base.css";
 
 // =================================================================== //
 
-export default function SidebarWrapperPlaylist(id) {
+export default function SidebarWrapperPlaylist() {
 
   const [playlist, setPlaylist] = useState("");
-  const [user_id, setUser_id] = useState("");
 
-  const userID = "y0k4jdu5z22fxnek2dh33x3ra";
-
-  const user_getMe = getMe();
+  const userID = localStorage.getItem("user_id");
 
   async function getPlaylist() {
-
-    // e.preventDefault();
 
     const token = localStorage.getItem(ACCESS_TOKEN);
 
@@ -53,10 +46,10 @@ export default function SidebarWrapperPlaylist(id) {
     request.get(options, function (error, response, body) {
 
       if (!error && response.statusCode === 200) {
-        console.log("GET-PLAYLIST -> ", body);
+        // console.log("GET-PLAYLIST -> ", body);
         setPlaylist(body.items);
       } else {
-        console.log("ERROR GET-PLAYLIST -> ", error);
+        // console.log("ERROR GET-PLAYLIST -> ", error);
       }
 
     });

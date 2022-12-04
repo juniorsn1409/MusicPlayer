@@ -1,0 +1,124 @@
+// react dependencies
+
+import React, { useEffect, useState } from "react";
+
+// other dependencies
+
+import request from 'request';
+
+//spotify dependencies
+
+import { ACCESS_TOKEN, PAUSE, DEVICES, PLAY } from '../../spotify/helpful/env-smooth';
+
+// css dependencies
+
+import "./index.css";
+import "./../base.css";
+
+// =================================================================== //
+
+export default function ControlPlay() {
+
+  const [device, setDevice] = useState("");
+
+  async function getDevices() {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const url = DEVICES;
+
+    const options = {
+      url: url,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'content-type': 'application/json',
+      },
+      json: true
+    };
+
+    request.get(options, function (error, response, body) {
+
+      if (!error && response.statusCode === 200) {
+        console.log("GET-DEVICES -> ", body.devices);
+        setDevice(body.devices);
+      } else {
+        // console.log("ERROR GET-DEVICES -> ", error);
+      }
+
+    });
+  }
+
+  async function postPAUSE() {
+
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const url = PAUSE;
+
+    const options = {
+      url: url,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'content-type': 'application/json',
+      },
+      json: true
+    };
+
+    request.put(options, function (error, response, body) {
+
+      if (!error && response.statusCode === 200) {
+        console.log("PAUSE -> ", body);
+      } else {
+        console.log("ERROR PAUSE -> ", error);
+        console.log("ERROR PAUSE RESPONSE -> ", response.statusCode);
+        console.log("ERROR PAUSE BODY -> ", body);
+      }
+
+    }
+    );
+  }
+
+  async function postPLAY() {
+
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const url = PLAY;
+
+    const options = {
+      url: url,
+      // body: JSON.string(device[0].id),
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Content-Length': '116',
+      },
+    }
+
+    request.put(url, options, function (error, response, body) {
+
+      if (!error && response.statusCode === 200) {
+        console.log("PLAY -> ", body);
+      } else {
+        console.log("ERROR PLAY -> ", error);
+        console.log("ERROR PLAY RESPONSE -> ", response.statusCode);
+        console.log("ERROR PLAY BODY -> ", body);
+      }
+
+    });
+  }
+
+    useEffect(() => {
+      setDevice(getDevices());
+    }, []);
+
+    return (
+      <a className="control-link" onClick={() => postPAUSE()}>
+        <svg className="icon-control" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z" />
+        </svg>
+      </a>
+    );
+  }
+
+
+// ICON PAUSE
+{/* <a className="control-link" onClick={() => postNext()}>
+  <svg className="icon-control" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+    <path d="M10 24h-6v-24h6v24zm10-24h-6v24h6v-24z" />
+  </svg>
+</a> */}
