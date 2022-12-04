@@ -76,12 +76,13 @@ export default function ControlPlay() {
 
   async function postPLAY() {
 
+    setDevice(getDevices());
+    
     const token = localStorage.getItem(ACCESS_TOKEN);
-    const url = PLAY;
+    const url = `https://api.spotify.com/v1/me/player/play?device_id=${device[0].id}`;
 
     const options = {
       url: url,
-      // body: JSON.string(device[0].id),
       headers: {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
@@ -102,18 +103,59 @@ export default function ControlPlay() {
     });
   }
 
-    useEffect(() => {
-      setDevice(getDevices());
-    }, []);
+  async function setActivePlayer(deviceID) {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const url = `https://api.spotify.com/v1/me/player`;
 
-    return (
-      <a className="control-link" onClick={() => postPAUSE()}>
-        <svg className="icon-control" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z" />
-        </svg>
-      </a>
+
+    const devices_id = {
+
+      "id": deviceID,
+      "is_active": true,
+      "is_private_session": false,
+      "is_restricted": false,
+      "name": "My fridge",
+      "type": "Computer",
+      "volume_percent": 50
+    };
+
+    console.log("DEVICE ACTIVE ->", devices_id);
+
+    const options = {
+      url: url,
+      body: devices_id,
+      headers: {
+
+      },
+    }
+
+    request.put(url, options, function (error, response, body) {
+
+      if (!error && response.statusCode === 200) {
+        console.log("ACTIVE -> ", body);
+      } else {
+        console.log("ERROR ACTIVE -> ", error);
+        console.log("ERROR ACTIVE RESPONSE -> ", response);
+        console.log("ERROR ACTIVE BODY -> ", body);
+      }
+
+    }
+      ,
     );
   }
+
+  useEffect(() => {
+    setDevice(getDevices());
+  }, []);
+
+  return (
+    <a className="control-link" onClick={() => postPLAY()}>
+      <svg className="icon-control" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z" />
+      </svg>
+    </a>
+  );
+}
 
 
 // ICON PAUSE

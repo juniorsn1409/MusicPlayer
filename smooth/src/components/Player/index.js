@@ -48,11 +48,11 @@ export default function Player() {
     request.get(options, function (error, response, body) {
 
       if (!error && response.statusCode === 200) {
-        console.log("CURRENT PLAYING -> ", body);
+        // console.log("CURRENT PLAYING -> ", body);
         setcurrentTrack(body);
         setcurrentArtists(body.item.artists.name);
       } else {
-        console.log("ERROR CURRENT PLAYING -> ", error);
+        // console.log("ERROR CURRENT PLAYING -> ", error);
       }
 
 
