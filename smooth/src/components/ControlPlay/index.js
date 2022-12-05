@@ -77,7 +77,7 @@ export default function ControlPlay() {
   async function postPLAY() {
 
     setDevice(getDevices());
-    
+
     const token = localStorage.getItem(ACCESS_TOKEN);
     const url = `https://api.spotify.com/v1/me/player/play?device_id=${device[0].id}`;
 
