@@ -26,19 +26,53 @@ import request from 'request';
 
 export default function SuasMusicas() {
 
+  const [musicas, setMusicas] = useState();
+
+
+  async function searchMusic() {
+
+    const url = 'http://localhost/MusicPlayer/smooth/src/banco/api/';
+
+    const options = {
+      url: url,
+      headers: {
+        'content-type': 'application/json',
+        'Access-Control-Allow-Origin': '*', // <--- CORS
+        mode: 'no-cors',
+      },
+      json: true
+    };
+
+    request.get(options, function (error, response, body) {
+
+      if (!error && response.statusCode === 200) {
+        console.log("GET-SEARCH -> ", body);
+        setMusicas(body);
+      } else {
+        console.log("ERROR GET-SEARCH -> ", error);
+      }
+
+    });
+
+  }
+
+  useEffect(() => {
+    setMusicas(searchMusic());
+  }, []);
+
   return (
     <div className="container">
       <div className="main">
         <div className="sidebar">
           <div className="side">
             <Logo />
-            <SidebarWrapperMenu/>
+            <SidebarWrapperMenu />
             <SidebarWrapperPlaylist />
           </div>
         </div>
         <div className="content">
           <div className="header-content">
-
+            Suas Musicas
           </div>
           <div className="main-content">
 
@@ -49,3 +83,5 @@ export default function SuasMusicas() {
     </div>
   );
 }
+
+// =================================================================== //
