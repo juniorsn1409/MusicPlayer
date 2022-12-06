@@ -1,7 +1,7 @@
 export const AUTHORIZE = 'https://accounts.spotify.com/authorize'
 export const TOKEN = 'https://accounts.spotify.com/api/token';
 export const REFRESH = 'https://accounts.spotify.com/api/refresh_token';
-export const PLAYLISTS = 'https://api.spotify.com/v1/search?q=${input}&type=track,artist,album,playlist';
+// export const PLAYLISTS = 'https://api.spotify.com/v1/search?q=${input}&type=track,artist,album,playlist';
 export const DEVICES = 'https://api.spotify.com/v1/me/player/devices';
 export const PLAY = 'https://api.spotify.com/v1/me/player/play';
 export const PAUSE = 'https://api.spotify.com/v1/me/player/pause';

@@ -9,6 +9,7 @@ import request from 'request';
 import ControlNext from "../ControlNext";
 import ControlPlay from "../ControlPlay";
 import ControlPrevious from "../ControlPrevious";
+import getPlayerState from "../../spotify/endpoints/get_playbackState";
 // import ControlRandom from "../ControlRandom";
 // import ControlReapt from "../ControlReapt";
 
@@ -29,6 +30,7 @@ export default function Player() {
 
   const [currentTrack, setcurrentTrack] = useState("");
   const [currentArtists, setcurrentArtists] = useState("");
+  const [isPlaying, setisPlaying] = useState(false);
 
 
   async function getCurrentTrack() {
@@ -62,11 +64,15 @@ export default function Player() {
 
 
   useEffect(() => {
-    getCurrentTrack();
 
+    setisPlaying(getPlayerState());
+    console.count("IS PLAYING -> ", isPlaying);
   }, []);
 
-
+  useEffect(() => {
+    getCurrentTrack();
+    console.count("CURRENT TRACK -> ", currentTrack);
+  }, []);
 
   return (
     <div className="player">
@@ -91,7 +97,7 @@ export default function Player() {
         <div className="controls-buttons">
           {/* <ControlRandom /> */}
           <ControlPrevious />
-          <ControlPlay />
+          <ControlPlay isPlaying={getPlayerState()} />
           <ControlNext />
           {/* <ControlReapt /> */}
         </div>

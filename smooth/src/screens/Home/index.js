@@ -12,7 +12,6 @@ import { minutesAndSeconds } from "../../spotify/helpful/minutesAndSeconds";
 
 import Logo from "./../../components/Logo";
 import Player from "./../../components/Player";
-import AcutualDevice from "../../components/AcutualDevice";
 import SidebarWrapperMenu from "../../components/SidebarWrapperMenu";
 import SidebarWrapperPlaylist from "../../components/SidebarWrapperPlaylist";
 
@@ -74,14 +73,47 @@ export default function Home() {
     request.post(options, function (error, response, body) {
 
       if (!error && response.statusCode === 200) {
-        console.log("PUT-CHOOSE-TRACK -> ", body);
+        console.log("PUT-QUEUE-TRACK -> ", body);
       } else {
-        console.log("ERROR PUT-CHOOSE-TRACK -> ", error);
+        console.log("ERROR PUT-QUEUE-TRACK -> ", error);
       }
 
     });
+  }
 
-    postNext();postNext();
+  async function PlayMusic(track) {
+
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const url = `https://api.spotify.com/v1/me/player/play`;
+
+    console.log("TRACK -> ", track);
+
+    const playlist = { uris: [track.uri] };
+    const ms = { position_ms: 0 }
+
+    const options = {
+      url: url,
+
+      headers: {
+        'Content-Type': 'application/json',
+        ' Authorization': 'Bearer ' + token,
+        'body': {
+          'uris': [track.uri],
+          'position_ms': 0,
+        }
+
+      }, json: true,
+    }
+
+    request.put(options, function (error, response, body){
+
+      if (!error && response.statusCode === 200) {
+        console.log("PUT-PLAY-TRACK -> ", body);
+      } else {
+        console.log("ERROR PUT-PLAY-TRACK -> ", error);
+      }
+
+    });
   }
 
   function postNext() {
@@ -110,6 +142,7 @@ export default function Home() {
     );
   }
 
+  useEffect(() => { console.log(track) }, [track]);
 
   return (
     <div className="container">
@@ -132,13 +165,14 @@ export default function Home() {
                   getSearch(e.target.value);
                 }}
               />
-              <AcutualDevice/>
             </div>
           </div>
           <div className="main-content">
             {Array.isArray(track) ? track.map((element) => {
               return (
-                <div className="music" key={element.id} onDoubleClick={() => AddItemToPlaybackQueue(element)} >
+                <div className="music" key={element.id} onDoubleClick={() => {
+                  PlayMusic(element);
+                }} >
                   <div className="esquerda">
                     <img
                       className="music-img" alt="music-img"
