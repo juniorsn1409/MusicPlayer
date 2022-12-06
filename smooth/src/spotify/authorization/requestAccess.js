@@ -11,7 +11,7 @@ export const getRequest = () => {
      const state = generateRamdonString(16);
      setCookie(stateKey, state, 7);
 
-     const scope = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-top-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private';
+     const scope = 'ugc-image-upload user-read-playback-state app-remote-control user-modify-playback-state playlist-read-private user-follow-modify playlist-read-collaborative user-follow-read user-read-currently-playing user-read-playback-position user-library-modify playlist-modify-private playlist-modify-public user-read-email user-top-read streaming user-read-recently-played user-read-private user-library-read';
 
      const queryParams = querystring.stringify({
           client_id: CLIENT_ID,

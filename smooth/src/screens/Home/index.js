@@ -88,19 +88,13 @@ export default function Home() {
 
     console.log("TRACK -> ", track);
 
-    const playlist = { uris: [track.uri] };
-    const ms = { position_ms: 0 }
-
     const options = {
       url: url,
 
       headers: {
         'Content-Type': 'application/json',
         ' Authorization': 'Bearer ' + token,
-        'body': {
-          'uris': [track.uri],
-          'position_ms': 0,
-        }
+        'body': JSON.stringify({'uris': [track.uri]}),
 
       }, json: true,
     }
@@ -150,8 +144,7 @@ export default function Home() {
         <div className="sidebar">
           <div className="side">
             <Logo />
-            <SidebarWrapperMenu>
-            </SidebarWrapperMenu>
+            <SidebarWrapperMenu/>
             <SidebarWrapperPlaylist />
           </div>
         </div>
@@ -171,7 +164,7 @@ export default function Home() {
             {Array.isArray(track) ? track.map((element) => {
               return (
                 <div className="music" key={element.id} onDoubleClick={() => {
-                  PlayMusic(element);
+                  AddItemToPlaybackQueue(element);
                 }} >
                   <div className="esquerda">
                     <img
