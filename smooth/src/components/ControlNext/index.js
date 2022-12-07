@@ -1,6 +1,6 @@
 // react dependencies
 
-import React, { useEffect } from "react";
+import React from "react";
 
 // other dependencies
 
@@ -36,9 +36,9 @@ export default function ControlNext() {
     request.post(options, function (error, response, body) {
 
       if (!error && response.statusCode === 200) {
-        console.log("NEXT -> ", body);
+        // console.log("NEXT -> ", body);
       } else {
-        console.log("ERROR NEXT -> ", error);
+        // console.log("ERROR NEXT -> ", error);
       }
 
     }

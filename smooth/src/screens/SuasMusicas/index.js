@@ -28,36 +28,50 @@ export default function SuasMusicas() {
 
   const [musicas, setMusicas] = useState();
 
+  // async function searchMusic() {
 
-  async function searchMusic() {
+  //   const url = 'http://localhost/MusicPlayer/smooth/src/banco/api';
 
-    const url = 'http://localhost/MusicPlayer/smooth/src/banco/api/';
+  //   const options = {
+  //     url: url,
+  //     headers: {
+  //       'content-type': 'application/json',
+  //       'Acess-Control-Allow-Origin': '*',
+  //     },
+  //     json: true
+  //   };
 
-    const options = {
-      url: url,
-      headers: {
-        'content-type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // <--- CORS
-        mode: 'no-cors',
-      },
-      json: true
-    };
+  //   request.get(options, function (error, response, body) {
 
-    request.get(options, function (error, response, body) {
+  //     if (!error && response.statusCode === 200) {
+  //       console.log("GET-MUSICA-API -> ", body);
+  //       setMusicas(body);
+  //     } else {
+  //       console.log("ERROR GET-MUSICA-API -> ", error);
+  //     }
 
-      if (!error && response.statusCode === 200) {
-        console.log("GET-SEARCH -> ", body);
-        setMusicas(body);
-      } else {
-        console.log("ERROR GET-SEARCH -> ", error);
-      }
+  //   });
 
-    });
-
-  }
+  // }
 
   useEffect(() => {
-    setMusicas(searchMusic());
+
+    // const response = fetch('http://localhost/MusicPlayer/smooth/src/banco/api', {
+    //   method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    //   mode: 'cors', // no-cors, *cors, same-origin
+    //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    //   credentials: 'same-origin', // include, *same-origin, omit
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+
+    // }).then(function(response) {
+    //   setMusicas(response.json());
+    // })
+
+
+    console.log("SET-MUSICA-API -> ", musicas);
   }, []);
 
   return (
@@ -75,7 +89,9 @@ export default function SuasMusicas() {
             Suas Musicas
           </div>
           <div className="main-content">
-
+            <div className="musicas">
+              {musicas}
+            </div>
           </div>
         </div>
       </div>

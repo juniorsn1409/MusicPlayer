@@ -81,34 +81,34 @@ export default function Home() {
     });
   }
 
-  async function PlayMusic(track) {
+  // async function PlayMusic(track) {
 
-    const token = localStorage.getItem(ACCESS_TOKEN);
-    const url = `https://api.spotify.com/v1/me/player/play`;
+  //   const token = localStorage.getItem(ACCESS_TOKEN);
+  //   const url = `https://api.spotify.com/v1/me/player/play`;
 
-    console.log("TRACK -> ", track);
+  //   console.log("TRACK -> ", track);
 
-    const options = {
-      url: url,
+  //   const options = {
+  //     url: url,
 
-      headers: {
-        'Content-Type': 'application/json',
-        ' Authorization': 'Bearer ' + token,
-        'body': JSON.stringify({'uris': [track.uri]}),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       ' Authorization': 'Bearer ' + token,
+  //       'body': JSON.stringify({'uris': [track.uri]}),
 
-      }, json: true,
-    }
+  //     }, json: true,
+  //   }
 
-    request.put(options, function (error, response, body){
+  //   request.put(options, function (error, response, body){
 
-      if (!error && response.statusCode === 200) {
-        console.log("PUT-PLAY-TRACK -> ", body);
-      } else {
-        console.log("ERROR PUT-PLAY-TRACK -> ", error);
-      }
+  //     if (!error && response.statusCode === 200) {
+  //       console.log("PUT-PLAY-TRACK -> ", body);
+  //     } else {
+  //       console.log("ERROR PUT-PLAY-TRACK -> ", error);
+  //     }
 
-    });
-  }
+  //   });
+  // }
 
   function postNext() {
 
